@@ -21,6 +21,7 @@ public class Fruitore extends Cittadino{
 	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
+		sb.append("#########################################################################");
 		sb.append("FRUITORE: " + nome);
 		sb.append("\nDATA ISCRIZIONE: " + Data.convertoData(inizio_iscrizione));
 		sb.append("\nDATA SCADENZA: " + Data.convertoData(scadenza_iscrizione) );

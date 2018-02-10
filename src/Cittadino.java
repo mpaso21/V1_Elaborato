@@ -5,7 +5,7 @@ import mylib.UtilitàControllo;
 
 public class Cittadino {
 	protected String nome;
-	private String status;
+	private String status;//devo mettere come enum
 	private int età;
 	
 	
@@ -43,7 +43,7 @@ public class Cittadino {
 		return età;
 	}
 	
-	public boolean iscrizione(){
+	public boolean richiestaIscrizione(){
 		if(this.getEtà()>= 18){
 			this.setStatus("fruitore");
 		}

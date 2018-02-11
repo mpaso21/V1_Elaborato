@@ -15,10 +15,12 @@ public class ElencoFruitori {
 		elenco.add(f);//questo metodo va in questa classe?
 	}
 	
-	public void rimozioneFruitore (Fruitore f){
+	public void rimozioneFruitore(Fruitore f){
 		elenco.remove(f); //rimuovi da vedere meglio il metoodo guarda carriera studetnte
 	}
+
 	public String stampaElenco(){
+		controlloScadenza(LocalDateTime.now());
 		StringBuilder sb = new StringBuilder();
 		sb.append("ELENCO FRUITORI: " + "\n");
 		for(int i = 0; i < elenco.size(); i++){
@@ -35,50 +37,52 @@ public class ElencoFruitori {
 		return elenco.get(valore -1);
 	}
 	
-	//il rinnovo comporta l'aggiornamento dell'iscrzione e scadenza nell'elenco fruitori
-			public void rinnovo(LocalDateTime la, Fruitore f){//la data in cui richiedo rinnovo
-			//se ho ricevuto richiesta rinnovo true devo verificare i termini entro cui l'ha fa
-			if(la.isBefore(f.getScadenza_iscrizione()) && la.isAfter(f.calcoloTerminiPrescritti())){
-				//la data in cui lo richiedo � compresa tra la scadenza e i 10 giorni dopo
-				//allora puoi fare rinnovo
-				System.out.println("PUOI RINNOVARE L'ISCRIZIONE ORA");
-				//AGGIORNO data iscrizione con data corrente 
-				//aggiorno data scadenza con calcolo scadenza su data iscrizione nuova
-				f.inizio_iscrizione= la;
-				f.scadenza_iscrizione = f.calcolo_scadenza();
-				System.out.println("ISCRIZIONE RINNOVATA");
-			}
-			else if(!la.isBefore(f.scadenza_iscrizione)){
-					System.out.println("I TERMINI ENTRO CUI POTER RINNOVARE L'ISCRIZIONE SONO CONCLUSI.");
-					System.out.println("NON SEI PIU' UN FRUITORE DEL NOSTRO SERVIZIO");
-					elenco.remove(f);
-					//il fruitore viene cancellato dall'elencofruitori
-					//e il cittadino cambio lo stato da fruitore a non 
-				}
-			else if(!la.isAfter(f.calcoloTerminiPrescritti())){ //puoi rinnovarli da calcolotermini in poi
-					LocalDateTime d;
-					d = f.calcoloTerminiPrescritti();
-					System.out.println("DEVI ASPETTARE ANCORA QUALCHE MINUTO PER RINNOVARE L'ISCRIZIONE."
-							+ " PUOI RINNOVARLA DA QUEST'ORA: " + Data.convertoData(d));	
-				}
-
-			}
+//	//il rinnovo comporta l'aggiornamento dell'iscrzione e scadenza nell'elenco fruitori
+//	public void rinnovo(LocalDateTime la, Fruitore f){//la data in cui richiedo rinnovo
+//			//se ho ricevuto richiesta rinnovo true devo verificare i termini entro cui l'ha fa
+//			if(la.isBefore(f.getScadenza_iscrizione()) && la.isAfter(f.calcoloTerminiPrescritti())){
+//				//la data in cui lo richiedo � compresa tra la scadenza e i 10 giorni dopo
+//				//allora puoi fare rinnovo
+//				System.out.println("PUOI RINNOVARE L'ISCRIZIONE ORA");
+//				//AGGIORNO data iscrizione con data corrente 
+//				//aggiorno data scadenza con calcolo scadenza su data iscrizione nuova
+//				f.inizio_iscrizione= la;
+//				f.scadenza_iscrizione = f.calcolo_scadenza();
+//				System.out.println("ISCRIZIONE RINNOVATA");
+//			}
+//			else if(!la.isBefore(f.getScadenza_iscrizione())){
+//					System.out.println("I TERMINI ENTRO CUI POTER RINNOVARE L'ISCRIZIONE SONO CONCLUSI.");
+//					System.out.println("NON SEI PIU' UN FRUITORE DEL NOSTRO SERVIZIO");
+//					elenco.remove(f);
+//					//il fruitore viene cancellato dall'elencofruitori
+//					//e il cittadino cambio lo stato da fruitore a non 
+//			}
+//			else if(!la.isAfter(f.calcoloTerminiPrescritti())){ //puoi rinnovarli da calcolotermini in poi
+//					LocalDateTime d;
+//					d = f.calcoloTerminiPrescritti();
+//					System.out.println("DEVI ASPETTARE ANCORA QUALCHE MINUTO PER RINNOVARE L'ISCRIZIONE."
+//							+ " PUOI RINNOVARLA DA QUEST'ORA: " + Data.convertoData(d));	
+//				}
+//	}
 			
 			//controllo scadenza fruitore se � scaduto lo cancello NON VA 
-			public void controlloScadenza(LocalDateTime d){
-				if(!elenco.isEmpty()){//d data corrente
-				for(Fruitore f: elenco){
-					if(f.getScadenza_iscrizione().isAfter(d)){
-						System.out.println( f.toString() + "\n-->ISCRIZIONE NON ANCORA SCADUTA");
+	private void controlloScadenza(LocalDateTime d){
+			if( !elenco.isEmpty()){//d data corrente
+				
+				int size = elenco.size();
+				for(int i = 0; i < size; i++){
+				
+					if(elenco.get(i).getScadenza_iscrizione().isAfter(d)){
+						System.out.println( elenco.get(i).toString() + "\n-->ISCRIZIONE NON ANCORA SCADUTA");
 					}
 					else{
 						System.out.println("-->ISCRIZIONE SCADUTA");
-						elenco.remove(f);
+						elenco.remove(elenco.get(i));
 					}
 				}
 			 }
 				else{
 					System.out.println("L'ELENCO E' VUOTO");
 				}
-			}
+	}
 }

@@ -71,7 +71,7 @@ public class ElencoFruitori {
 						System.out.println( f.toString() + "\n-->ISCRIZIONE NON ANCORA SCADUTA");
 					}
 					else{
-						System.out.println("ISCRIZIONE SCADUTA");
+						System.out.println("-->ISCRIZIONE SCADUTA");
 						elenco.remove(f);
 					}
 				}

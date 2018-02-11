@@ -21,8 +21,6 @@ public class Main {
 		do{
 			switch(m.scegli()){
 			case 1:
-				 // d = Data.creaData();
-				 // s.controlloScadenza(d);
 				  c = Cittadino.creaCittadino();
 				  if(c.richiestaIscrizione()){//ISCRIZIONE VA A BUON FINE
 					  f = new Fruitore(c.getNome());
@@ -35,15 +33,15 @@ public class Main {
 				  }
 				  break;
 			case 2:
-				//  d = Data.creaData();
-				 // s.controlloScadenza(d);
 				  f = s.selezionaFruitore();
 				  termine = Data.creaData();//DATA IN CUI FACCIO LA RICHIESTA DI RINNOVO
 				  s.rinnovo(termine, f);
 				  //f.rinnovo(termine);
 				  break;
 			case 3:
-				  System.out.println(s.stampaElenco());
+			      d = Data.creaData();
+				  s.controlloScadenza(d);
+				  //System.out.println(s.stampaElenco());
 				  break;
 			case 0:
 				 uscita = true;
@@ -51,30 +49,6 @@ public class Main {
 			}
 		}while(uscita != true);
 	
-//		char a = InputDati.leggiChar("VUOI DIVENTARE UN FRUITORE DEL NOSTRO SERVIZIO? S/N");
-//		
-//		do{
-//	     c = Cittadino.creaCittadino();
-//		 if(c.richiestaIscrizione()){//sarà un opzione del menù
-//			  f = new Fruitore(c.getNome());
-//			  //System.out.println(f.toString());
-//			  s.iscrizioneFruitore(f);//iscrizione va a buon fine
-//			  System.out.println("SEI DIVENTATO FRUITORE! ORA POTRAI USUFRUIRE DEI PRESTITI BIBLIOTECARI");
-//			   a = InputDati.leggiChar("VUOI RINNOVARE LA TUA ISCRIZIONE? S/N");//ci sarà un opzione nel menù
-//			   if(a == 'S'){
-//				   termine = Data.creaData();//FINO A QUI GIUSTO
-//				   System.out.println(termine.toString());
-//				   f.rinnovo(termine);
-//					  //System.out.println(f.toString());
-//
-//			   }
-//		 }
-//		 else{//iscrizione non va a buon fine
-//			System.out.println("NON PUOI DIVENTARE UN FRUITORE PERCHE' HAI MENO DI 18 ANNI");
-//		 }
-//		}while(mylib.InputDati.yesOrNo("VUOI CONTINUARE? "));
-//		
-//		System.out.println(s.stampaElenco());
 	}
 
 }

@@ -1,7 +1,10 @@
 package main;
 import java.time.LocalDateTime;
-import mylib.MyMenu;
 
+import mylib.Constants;
+import mylib.Data;
+import mylib.MyMenu;
+//test jUnit
 
 public class Main {
 
@@ -18,7 +21,6 @@ public class Main {
 		String opzioni[] = {
 				"Iscrizione al registro" , "Rinnovo iscrizione", "Stampa registro fruitori" };
 		MyMenu m = new MyMenu(titolo, opzioni);
-		//RICHIESTA MENU
 		
 		do{
 			switch(m.scegli()){
@@ -28,10 +30,10 @@ public class Main {
 					  fruitore = new Fruitore(cittadino.getNome());
 					  System.out.println(fruitore.toString());
 					  elencoFruitori.iscrizioneFruitore(fruitore);
-					  System.out.println("SEI DIVENTATO FRUITORE! ORA POTRAI USUFRUIRE DEI PRESTITI BIBLIOTECARI");
+					  System.out.println(Constants.ISCRITTO);
 				  }
 		          else{//ISCRIZIONE NON VA A BUON FINE
-						System.out.println("NON PUOI DIVENTARE UN FRUITORE PERCHE' HAI MENO DI 18 ANNI");
+						System.out.println(Constants.NON_ISCRITTO);
 				  }
 				  break;
 			case 2:
@@ -39,7 +41,6 @@ public class Main {
 				  termine = Data.creaData(); //DATA IN CUI FACCIO LA RICHIESTA DI RINNOVO
 
 				  fruitore.rinnovo(termine, elencoFruitori);
-				  
 				  break;
 			case 3:
 				  System.out.println(elencoFruitori.stampaElenco());

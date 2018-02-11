@@ -1,36 +1,62 @@
 package main;
 import java.time.LocalDateTime;
 
-import sun.util.calendar.BaseCalendar.Date;
+import mylib.Constants;
+import mylib.Data;
 
+/**
+ * La classe Fruitore rappresenta un cittadino maggiorenne che può quindi diventare
+ * fruitore dei servizi di prestito temporaneo.
+ * @author Marika
+ *
+ */
 public class Fruitore extends Cittadino{
 	
-	public LocalDateTime inizio_iscrizione;
-	public LocalDateTime scadenza_iscrizione;
+	private LocalDateTime inizio_iscrizione;
+	private LocalDateTime scadenza_iscrizione;
 	
+	/**
+	 * Costruttore classe Fruitore. Ciascun fruitore è composto da un nome, da una data
+	 * di iscrizione e da una data di scadenza dell'iscrizione.
+	 * @param nome
+	 */
 	public Fruitore(String nome){
 	    super(nome);
 		this.inizio_iscrizione = Data.creaData();
-		this.scadenza_iscrizione = calcolo_scadenza();
+		this.scadenza_iscrizione = calcoloScadenza();
 	}
 	
-	public LocalDateTime calcolo_scadenza(){
+	/**
+	 * Metodo calcolo_scadenza permette avendo una data di iscrizione di calcolare su essa la scadenza che
+	 * è esattamente 5 anni dopo dall data di iscrizione.
+	 * @return
+	 */
+	public LocalDateTime calcoloScadenza(){
 	  //5 anni dopo quella di iscrizione
 	 // scadenza_iscrizione = Data.cambiaAnno(5, inizio_iscrizione);
 		scadenza_iscrizione = Data.cambiaMinuto(2, inizio_iscrizione);
 	  return scadenza_iscrizione;
 	}
 	
+	/**
+	 * Metodo toString fornisce una rappresentazione delle anagrafiche del fruitore.
+	 */
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("#########################################################################");
-		sb.append("\n");
+		//sb.append("#########################################################################");
+		//sb.append("\n");
 		sb.append("FRUITORE: " + nome);
 		sb.append("\nDATA ISCRIZIONE: " + Data.convertoData(inizio_iscrizione));
 		sb.append("\nDATA SCADENZA: " + Data.convertoData(scadenza_iscrizione) );
+		sb.append("\n------------------------------------------\n");
 		return sb.toString();
 	}
 	
+	/**
+	 * Metodo calcoloTerminiPrescritti permette di calcolare il termine entro cui poter
+	 * chiedere il rinnovo. (non prima dei 10 giorni antecedenti la data di scadenza).
+	 * @return
+	 */
 	public LocalDateTime calcoloTerminiPrescritti(){
 		LocalDateTime d;
 		//d = Data.cambiaGiorno(10, scadenza_iscrizione);
@@ -38,50 +64,47 @@ public class Fruitore extends Cittadino{
 		return d;
 	}
 	
-	// il rinnovo comporta l'aggiornamento dell'iscrzione e scadenza nell'elenco
-	// fruitori
+	/**
+	 * Metodo rinnovo controlla se è possibile rinnovare l'iscrizione del fruitore oppure no.
+	 * Per poter rinnovare l'iscrizione del fruitore è necessario che la richiesta non avvenga prima dei 
+	 * 10 giorni antecedenti la scandenza e non dopo la data di scadenza.
+	 * @param la
+	 * @param elenco
+	 */
 	public void rinnovo(LocalDateTime la, ElencoFruitori elenco) {// la data in cui richiedo rinnovo
-		// se ho ricevuto richiesta rinnovo true devo verificare i termini entro cui
-		// l'ha fa
+		
 		if (la.isBefore(scadenza_iscrizione) && la.isAfter(calcoloTerminiPrescritti())) {
 			// la data in cui lo richiedo ï¿½ compresa tra la scadenza e i 10 giorni dopo
 			// allora puoi fare rinnovo
-			System.out.println("PUOI RINNOVARE L'ISCRIZIONE ORA");
-			// AGGIORNO data iscrizione con data corrente
-			// aggiorno data scadenza con calcolo scadenza su data iscrizione nuova
+			System.out.println(Constants.ISCRIZIONE_ORA);
 			inizio_iscrizione = la;
-			scadenza_iscrizione = calcolo_scadenza();
-			System.out.println("ISCRIZIONE RINNOVATA");
+			scadenza_iscrizione = calcoloScadenza();
+			System.out.println(Constants.ISCRIZIONE_RINNOVATA);
 		} else if (!la.isBefore(scadenza_iscrizione)) {
-			System.out.println("I TERMINI ENTRO CUI POTER RINNOVARE L'ISCRIZIONE SONO CONCLUSI.");
-			System.out.println("NON SEI PIU' UN FRUITORE DEL NOSTRO SERVIZIO");
-			
-			// il fruitore viene cancellato dall'elencofruitori
-			// e il cittadino cambio lo stato da fruitore a non
+			System.out.println(Constants.ISCRIZIONE_TERMINI_SCADUTI);
 			elenco.rimozioneFruitore(this);
 			
 		} else if (!la.isAfter(calcoloTerminiPrescritti())) { // puoi rinnovarli da calcolotermini in poi
 			LocalDateTime d;
 			d = calcoloTerminiPrescritti();
-			System.out.println("DEVI ASPETTARE ANCORA QUALCHE MINUTO PER RINNOVARE L'ISCRIZIONE."
-					+ " PUOI RINNOVARLA DA QUEST'ORA: " + Data.convertoData(d));
+			System.out.println(Constants.ISCRIZIONE_RINNOVATA_TRA_POCO + Data.convertoData(d));
 		}
 
 	}
 
-		public LocalDateTime getInizio_iscrizione() {
+		public LocalDateTime getInizioIscrizione() {
 			return inizio_iscrizione;
 		}
 
-		public LocalDateTime getScadenza_iscrizione() {
+		public LocalDateTime getScadenzaIscrizione() {
 			return scadenza_iscrizione;
 		}
 
-		public void setInizio_iscrizione(LocalDateTime inizio_iscrizione) {
+		public void setInizioIscrizione(LocalDateTime inizio_iscrizione) {
 			this.inizio_iscrizione = inizio_iscrizione;
 		}
 
-		public void setScadenza_iscrizione(LocalDateTime scadenza_iscrizione) {
+		public void setScadenzaIscrizione(LocalDateTime scadenza_iscrizione) {
 			this.scadenza_iscrizione = scadenza_iscrizione;
 		}
 

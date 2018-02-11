@@ -1,7 +1,8 @@
-package main;
+package mylib;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 
 public class Data {
 	//static
@@ -14,7 +15,7 @@ public class Data {
 	}
 	
 	public static String convertoData(LocalDateTime d){
-		 dataString = d.format(DateTimeFormatter.ofPattern("dd-MM-yyy_HH-mm-ss"));
+		 dataString = d.format(DateTimeFormatter.ofPattern("dd-MM-yyy HH-mm-ss"));
 		 return dataString;
 	}
 	//da cancellare

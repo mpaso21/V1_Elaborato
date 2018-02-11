@@ -1,6 +1,7 @@
 package main;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import mylib.InputDati;
 
@@ -69,20 +70,23 @@ public class ElencoFruitori {
 	private void controlloScadenza(LocalDateTime d){
 			if( !elenco.isEmpty()){//d data corrente
 				
-				int size = elenco.size();
-				for(int i = 0; i < size; i++){
+				List<Fruitore> toRemove = new ArrayList<Fruitore>();
 				
-					if(elenco.get(i).getScadenza_iscrizione().isAfter(d)){
-						System.out.println( elenco.get(i).toString() + "\n-->ISCRIZIONE NON ANCORA SCADUTA");
+				for(Fruitore f : elenco){
+					if(f.getScadenza_iscrizione().isAfter(d)){
+						System.out.println( f.toString() + "\n-->ISCRIZIONE NON ANCORA SCADUTA");
 					}
 					else{
 						System.out.println("-->ISCRIZIONE SCADUTA");
-						elenco.remove(elenco.get(i));
+						toRemove.add(f);
 					}
 				}
-			 }
-				else{
+				
+				elenco.removeAll(toRemove);
+				
+				
+			 } else{
 					System.out.println("L'ELENCO E' VUOTO");
-				}
+			}
 	}
 }

@@ -3,7 +3,7 @@ package mylib;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utilit‡Controllo {
+public class UtilitaControllo {
 	
 	/**
 	 * Questo metodo controlla che una stringa non contenga cifre e/o caratteri speciali
@@ -36,7 +36,7 @@ public class Utilit‡Controllo {
 	}
 	
 	public static boolean controlloTelefono(String t){
-		if(Utilit‡Controllo.controlloNumero(t) && t.length()== 10){
+		if(controlloNumero(t) && t.length()== 10){
 			return true;
 		}
 		return false;
@@ -45,7 +45,7 @@ public class Utilit‡Controllo {
 	
 	public static boolean controlloMatricola(String m){
 		
-			if (Utilit‡Controllo.controlloNumero(m) && m.length() == 6){
+			if (controlloNumero(m) && m.length() == 6){
 				return true;
 			}
 			return false;

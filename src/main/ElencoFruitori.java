@@ -1,3 +1,4 @@
+package main;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class ElencoFruitori {
 			public void rinnovo(LocalDateTime la, Fruitore f){//la data in cui richiedo rinnovo
 			//se ho ricevuto richiesta rinnovo true devo verificare i termini entro cui l'ha fa
 			if(la.isBefore(f.getScadenza_iscrizione()) && la.isAfter(f.calcoloTerminiPrescritti())){
-				//la data in cui lo richiedo è compresa tra la scadenza e i 10 giorni dopo
+				//la data in cui lo richiedo ï¿½ compresa tra la scadenza e i 10 giorni dopo
 				//allora puoi fare rinnovo
 				System.out.println("PUOI RINNOVARE L'ISCRIZIONE ORA");
 				//AGGIORNO data iscrizione con data corrente 
@@ -63,7 +64,7 @@ public class ElencoFruitori {
 
 			}
 			
-			//controllo scadenza fruitore se è scaduto lo cancello NON VA 
+			//controllo scadenza fruitore se ï¿½ scaduto lo cancello NON VA 
 			public void controlloScadenza(LocalDateTime d){
 				if(!elenco.isEmpty()){//d data corrente
 				for(Fruitore f: elenco){

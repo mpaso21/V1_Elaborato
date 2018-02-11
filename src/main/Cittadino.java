@@ -1,18 +1,18 @@
-import java.util.*;
+package main;
 
-import mylib.InputDati;
-import mylib.UtilitàControllo;
+import mylib.*;
+
 
 public class Cittadino {
 	protected String nome;
 	private String status;//devo mettere come enum
-	private int età;
+	private int eta;
 	
 	
-	public Cittadino(String nome, int età){
+	public Cittadino(String nome, int eta){
 		this.nome = nome;
 		this.status = "noFruitore"; //quando fa richiesta diventa fruitore
-		this.età = età;
+		this.eta = eta;
 	}
 
 	 public Cittadino(String nome){
@@ -21,8 +21,8 @@ public class Cittadino {
 	 
 	public static Cittadino creaCittadino(){
 		String nome = Cittadino.creaNome();
-		int età = Cittadino.creaEtà();
-		Cittadino c = new Cittadino(nome, età);
+		int eta = Cittadino.creaEta();
+		Cittadino c = new Cittadino(nome, eta);
 		return c;
 	}
 	
@@ -31,20 +31,20 @@ public class Cittadino {
 		String nome;
 		do{
 			nome = mylib.InputDati.leggiStringaNonVuota("inserisci il tuo nome: ");
-		}while(!(mylib.UtilitàControllo.controlloStringa(nome)));//VERIFICO NOME E DICI DI REINSERIRE SE NON è NEL FORMATO CORRETTO
+		}while(!(UtilitaControllo.controlloStringa(nome)));//VERIFICO NOME E DICI DI REINSERIRE SE NON ï¿½ NEL FORMATO CORRETTO
 		//verifica maiuscolo minouscolo
 		return nome;
 	}
 	
-	private static int creaEtà(){ //METTO PRIVATE PERCHE' LO USO NELLA CLASSE E NON NEL MAIN.  
+	private static int creaEta(){ //METTO PRIVATE PERCHE' LO USO NELLA CLASSE E NON NEL MAIN.  
 		
-		int età;
-		età = mylib.InputDati.leggiIntero("inserisci la tua età: ", 10, 90);
-		return età;
+		int eta;
+		eta = mylib.InputDati.leggiIntero("inserisci la tua etï¿½: ", 10, 90);
+		return eta;
 	}
 	
 	public boolean richiestaIscrizione(){
-		if(this.getEtà()>= 18){
+		if(this.getEta()>= 18){
 			this.setStatus("fruitore");
 		}
 		else{
@@ -61,8 +61,8 @@ public class Cittadino {
 		return status;
 	}
 
-	public int getEtà() {
-		return età;
+	public int getEta() {
+		return eta;
 	}
 
 	public void setNome(String nome) {
@@ -73,8 +73,8 @@ public class Cittadino {
 		this.status = status;
 	}
 
-	public void setEtà(int età) {
-		this.età = età;
+	public void setEta(int eta) {
+		this.eta = eta;
 	}
 	
 	

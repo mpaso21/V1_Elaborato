@@ -1,3 +1,4 @@
+package main;
 import java.time.LocalDateTime;
 
 import sun.util.calendar.BaseCalendar.Date;
@@ -40,7 +41,7 @@ public class Fruitore extends Cittadino{
 		//public void rinnovo(LocalDateTime la){//la data in cui richiedo rinnovo
 		//se ho ricevuto richiesta rinnovo true devo verificare i termini entro cui l'ha fa
 		//if(la.isBefore(scadenza_iscrizione) && la.isAfter(calcoloTerminiPrescritti())){
-			//la data in cui lo richiedo è compresa tra la scadenza e i 10 giorni dopo
+			//la data in cui lo richiedo ï¿½ compresa tra la scadenza e i 10 giorni dopo
 			//allora puoi fare rinnovo
 			//System.out.println("PUOI RINNOVARE L'ISCRIZIONE ORA");
 			//AGGIORNO data iscrizione con data corrente 

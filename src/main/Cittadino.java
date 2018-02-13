@@ -53,12 +53,12 @@ public class Cittadino {
 	 * 
 	 * @return
 	 */
-	private static String creaNome(){ //METTO PRIVATE PERCHE' LO USO NELLA CLASSE E NON NEL MAIN.  
+	private static String creaNome(){   
 		
 		String nome;
 		do{
 			nome = mylib.InputDati.leggiStringaNonVuota("inserisci il tuo nome: ");
-		}while(!(UtilitaControllo.controlloStringa(nome)));//VERIFICO NOME E DICI DI REINSERIRE SE NON � NEL FORMATO CORRETTO
+		}while(!(UtilitaControllo.controlloStringa(nome)));
 		//verifica maiuscolo minouscolo
 		return nome;
 	}
@@ -71,7 +71,7 @@ public class Cittadino {
 	private static int creaEta(){  
 		
 		int eta;
-		eta = mylib.InputDati.leggiIntero("inserisci la tua et�: ", 10, 90);
+		eta = mylib.InputDati.leggiIntero("inserisci la tua eta: ", 10, 90);
 		return eta;
 	}
 	

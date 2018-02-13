@@ -24,11 +24,24 @@ public class ElencoFruitori {
 	}
 	
 	/**
-	 * Il metodo iscrizioneFruitore permette l'aggiunta di un fruitore all'elenco dei fruitori.
+	 * Il metodo iscrizioneFruitore permette l'aggiunta di un fruitore all'elenco dei fruitori,
+	 * controllando che il fruitore non sia già presente nell'elenco.
 	 * @param f
 	 */
-	public void iscrizioneFruitore(Fruitore f){
+	public boolean iscrizioneFruitore(Fruitore f){
+		if(elenco.isEmpty()){
+			elenco.add(f);
+			return true;
+		}
+		else{
+			for(int i=0; i< elenco.size(); i++){
+				if(f.getNome().equalsIgnoreCase(elenco.get(i).getNome())){
+					return false;
+				}
+			}
+		}
 		elenco.add(f);
+		return true;
 	}
 	
 	/**
@@ -47,7 +60,7 @@ public class ElencoFruitori {
 	public String stampaElenco(){
 		controlloScadenza(LocalDateTime.now());
 		StringBuilder sb = new StringBuilder();
-		sb.append("ELENCO FRUITORI: " + "\n");
+		sb.append("ELENCO FRUITORI: " + "\n" + "\n");
 		for(int i = 0; i < elenco.size(); i++){
 			sb.append(i+1 + " ");
 			sb.append(elenco.get(i).toString());
@@ -78,7 +91,7 @@ public class ElencoFruitori {
 				
 				for(Fruitore f : elenco){
 					if(f.getScadenzaIscrizione().isAfter(d)){
-						System.out.println( f.toString() + Constants.ISCRIZIONE_NON_SCADUTA);
+						System.out.println( f.toString() + Constants.ISCRIZIONE_NON_SCADUTA + "\n");
 					}
 					else{
 						System.out.println(Constants.ISCRIZIONE_SCADUTA);

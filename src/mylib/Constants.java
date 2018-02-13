@@ -12,5 +12,5 @@ public class Constants {
 			                                                "NON SEI PIU' UN FRUITORE DEL NOSTRO SERVIZIO";
 	public static final String ISCRIZIONE_RINNOVATA_TRA_POCO = "DEVI ASPETTARE ANCORA QUALCHE MINUTO PER RINNOVARE L'ISCRIZIONE."
 																+ " PUOI RINNOVARLA DA QUEST'ORA: ";
-	
+	public static final String FRUITORE_GIA_PRESENTE = "SEI GIA PRESENTE NELL'ELENCO FRUITORI.";
 }

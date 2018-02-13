@@ -28,9 +28,13 @@ public class Main {
 				  cittadino = Cittadino.creaCittadino();
 				  if(cittadino.richiestaIscrizione()){//ISCRIZIONE VA A BUON FINE
 					  fruitore = new Fruitore(cittadino.getNome());
-					  System.out.println(fruitore.toString());
-					  elencoFruitori.iscrizioneFruitore(fruitore);
-					  System.out.println(Constants.ISCRITTO);
+					 // System.out.println(fruitore.toString());
+					  if(elencoFruitori.iscrizioneFruitore(fruitore)){
+						  System.out.println(Constants.ISCRITTO);
+					  }
+					  else{
+						  System.out.println(Constants.FRUITORE_GIA_PRESENTE);
+					  }
 				  }
 		          else{//ISCRIZIONE NON VA A BUON FINE
 						System.out.println(Constants.NON_ISCRITTO);

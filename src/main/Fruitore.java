@@ -74,7 +74,7 @@ public class Fruitore extends Cittadino{
 	public void rinnovo(LocalDateTime la, ElencoFruitori elenco) {// la data in cui richiedo rinnovo
 		
 		if (la.isBefore(scadenza_iscrizione) && la.isAfter(calcoloTerminiPrescritti())) {
-			// la data in cui lo richiedo � compresa tra la scadenza e i 10 giorni dopo
+			// la data in cui lo richiedo deve essere compresa tra la scadenza e i 10 giorni dopo
 			// allora puoi fare rinnovo
 			System.out.println(Constants.ISCRIZIONE_ORA);
 			inizio_iscrizione = la;
@@ -84,7 +84,7 @@ public class Fruitore extends Cittadino{
 			System.out.println(Constants.ISCRIZIONE_TERMINI_SCADUTI);
 			elenco.rimozioneFruitore(this);
 			
-		} else if (!la.isAfter(calcoloTerminiPrescritti())) { // puoi rinnovarli da calcolotermini in poi
+		} else if (!la.isAfter(calcoloTerminiPrescritti())) { // puoi rinnovarli da calcolo termini in poi
 			LocalDateTime d;
 			d = calcoloTerminiPrescritti();
 			System.out.println(Constants.ISCRIZIONE_RINNOVATA_TRA_POCO + Data.convertoData(d));
